@@ -1,0 +1,44 @@
+        JSONObject param=data.getParam();
+        String sql="select * from device_file";
+        String where="";
+		if(checkParamValid(param,"id")){
+			where="id="+param.getString("id");
+		}
+		if(checkParamValid(param,"id")){
+			where="id="+param.getString("id");
+		}
+		if(checkParamValid(param,"time_from") && checkParamValid(param,"time_to")){
+			if(!where.isEmpty()){
+				where=where+" and create_time between '"+param.getString("time_from")+"' and '"+param.getString("time_to")+"'";
+			}else{
+				where="create_time between '"+param.getString("time_from")+"' and '"+param.getString("time_to")+"'";
+			}
+		}
+		if(checkParamValid(param,"device_id")){
+			if(!where.isEmpty()){
+				where=where+" and device_id = '"+param.getString("device_id")+"'";
+			}else{
+				where="device_id ='"+param.getString("device_id")+"'";
+			}
+		}
+		if(checkParamValid(param,"device_type")){
+			if(!where.isEmpty()){
+				where=where+" and device_type = '"+param.getString("device_type")+"'";
+			}else{
+				where="device_type ='"+param.getString("device_type")+"'";
+			}
+		}
+		if(checkParamValid(param,"device_name")){
+			if(!where.isEmpty()){
+				where=where+" and device_name like '%"+param.getString("device_name")+"%'";
+			}else{
+				where="device_name like '%"+param.getString("device_name")+"%'";
+			}
+		}
+		if(!where.isEmpty()){
+			sql=sql+" where "+where;
+		}
+		if(checkParamValid(param,"order_by")){
+			sql=sql+" order by "+param.getString("order_by");
+		}
+		return sql;

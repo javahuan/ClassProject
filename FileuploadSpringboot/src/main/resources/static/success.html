@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>上传成功</title>
+</head>
+<body>
+    <h1>上传成功╰(▔∀▔)╯</h1>
+
+    <p id="file-info"></p>
+    <a id="download-link" href="/download">Download File</a><br>
+<!--    <a href="/fileupload.html"></a>-->
+    <button style="width:80px; height:30px;margin-top: 10px;margin-left:200px"
+            onclick=" window.location.href='/fileupload.html' ">
+        返回
+    </button>
+
+</body>
+<script>
+    // 从后端获取文件名
+    fetch('/getUploadedFileName')
+        .then(response => response.json())
+        .then(data => {
+            const fileName = data.fileName;
+            if (fileName) {
+                // 将文件名存储到 sessionStorage
+                sessionStorage.setItem('uploadedFileName', fileName);
+
+                // 显示文件信息并生成下载链接
+                document.getElementById('file-info').textContent = '上传的文件为: ' + fileName;
+                document.getElementById('download-link').textContent = '下载 ' + fileName;
+            } else {
+                document.getElementById('file-info').textContent = 'No file uploaded.';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching file name:', error);
+            document.getElementById('file-info').textContent = 'Error fetching file name.';
+        });
+</script>
+</html>
