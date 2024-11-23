@@ -1,0 +1,46 @@
+<view class="container container-gray">
+    <view class="group">
+        <view class="group-header">修改信息</view>
+        <view class="group-body">
+            <view class="input-list">
+                <view class="input-item">
+                    <text class="input-item-label">设备名称</text>
+                    <view class="input-item-content">
+                        <input type="text" value="{{title}}" bindinput="inputTitle" placeholder="请输入设备名称"></input>
+                    </view>
+                </view>
+                <view class="input-item">
+                    <text class="input-item-label">设别类型</text>
+                    <view class="input-item-content">
+                        <input type="text" value="{{type}}" bindinput="inputType" placeholder="请输入设别类型"></input>
+                    </view>
+                </view>
+                <view class="input-item">
+                    <text class="input-item-label">限制时间</text>
+                    <view class="input-item-content">
+                        <picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+                            <view class="tui-picker-detail">
+                                {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}}
+                                {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}:{{dateTimeArray[5][dateTime[5]]}}
+                            </view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="group-header">上传图片</view>
+                <view class="group-body">
+                    <view class="img-upload">
+                        <view class="img-add" bindtap="chooseImage"></view>
+                        <view class="img-item" bindlongtap="editImage" wx:for="{{uploadimgs}}" wx:key="{{index}}">
+                            <icon type="clear" size="20" color="red" style="display:{{editable?'block':'none'}}" bindtap="deleteImg" data-index="{{index}}" />
+                            <image src="{{item}}" mode="aspectFill"></image>
+                        </view>
+                    </view>
+                </view>
+
+            </view>
+        </view>
+    </view>
+    <view class="btn-submit">
+        <button class="btn-block btn-orange" bindtap="applySubmit">提交</button>
+    </view>
+</view>

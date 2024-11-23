@@ -1,0 +1,5 @@
+<view>
+  <button bindtap="onMapLocationTap">地图定位</button>
+  <button bindtap="onMapMonitorTap">地图监控</button>
+  <button bindtap="onMapTestTap">地图测试</button>
+</view>

@@ -1,0 +1,5 @@
+<map id="map4select" longitude="{{longitude}}"
+latitude="{{latitude}}" markers="{{markers}}"
+ scale="17" style="width:{{map_width}}px;height:{{map_height}}px"
+bindregionchange="regionchange" controls="{{controls}}">
+ </map>

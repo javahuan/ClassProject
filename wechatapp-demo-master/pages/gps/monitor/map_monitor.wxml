@@ -1,0 +1,15 @@
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}"
+  bindtap="onMapTap" bindcontroltap="controltap" markers="{{markers}}" circles="{{circles}}" bindmarkertap="markertap"
+  polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height:{{height}}px;">
+  <!-- 弹窗 开始-->
+  <cover-view class="group-body" wx:if="{{showDialog}}" bindtap="toggleDialog">
+    <text>设备ID：{{markerDeviceId}}</text>
+    <text>\n经纬度：[{{markerLongitude}},{{markerLatitude}}]</text>
+    <text>\n速度：{{markerSpeed}}</text>
+    <text>\n最后时间：{{markerGpsTime}}</text>
+  </cover-view>
+  <!-- 弹窗 完毕-->
+
+  <button bindtap="onMapLocationTap">定位</button>
+  <button bindtap="onQueryTap">查询</button>
+</map>
